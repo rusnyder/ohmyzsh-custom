@@ -35,11 +35,13 @@ ARCH="$(uname -m)"
 case "$ARCH" in
   arm64)
     export PYENV_ROOT="$HOME/.pyenv-$ARCH"
+    export POETRY_HOME="$HOME/.poetry-$ARCH"
     export POETRY_CACHE_DIR="$HOME/Library/Caches/pypoetry-$ARCH"
     ;;
   x86_64)
     # Allow default poetry path
     export PYENV_ROOT="$HOME/.pyenv"
+    export POETRY_HOME="$HOME/.poetry"
     ;;
   *)
     log_error "Unsupported arch '$ARCH'; skipping pyenv/poetry setup"
@@ -78,7 +80,7 @@ alias pshell='_poetry_env run'
 alias pshell='_poetry_env shell'
 
 # Poetry places its bins in `~/.local/bin`
-local poetry_bin="$HOME/.poetry/bin"
+local poetry_bin="$POETRY_HOME/bin"
 if ! echo "$PATH" | tr ':' '\n' | grep -E "^$poetry_bin\$" >/dev/null; then
   export PATH="$poetry_bin:$PATH"
 fi
