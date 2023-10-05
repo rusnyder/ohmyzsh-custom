@@ -32,3 +32,5 @@ if [ "$(uname -m)" = "arm64" ]; then
   #  log_warn "Shellcheck not supported on M1 Macs"
   #}
 fi
+
+export PAGER="less -F"

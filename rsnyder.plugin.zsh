@@ -24,5 +24,8 @@ for file in ${0:a:h}/*.plugin.zsh(.); do
   fi
 done
 
+# Recompile zsh completions (allows modules to add to FPATH, etc.)
+rm -f ~/.zcompdump; compinit
+
 # Add `bin` to the front of the path (allow overriding homebrew commands, etc.)
 export PATH="${0:a:h}/bin:$PATH"
